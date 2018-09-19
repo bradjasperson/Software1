@@ -34,6 +34,7 @@
             this.PartSearchButton = new System.Windows.Forms.Button();
             this.PartSearch = new System.Windows.Forms.TextBox();
             this.Label = new System.Windows.Forms.Label();
+            this.ModPartButton = new System.Windows.Forms.Button();
             this.Parts.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             // 
             // Parts
             // 
+            this.Parts.Controls.Add(this.ModPartButton);
             this.Parts.Controls.Add(this.AddPartButton);
             this.Parts.Controls.Add(this.PartSearchButton);
             this.Parts.Controls.Add(this.PartSearch);
@@ -102,6 +104,16 @@
             this.Label.TabIndex = 2;
             this.Label.Text = "Inventory Management System";
             // 
+            // ModPartButton
+            // 
+            this.ModPartButton.Location = new System.Drawing.Point(467, 107);
+            this.ModPartButton.Name = "ModPartButton";
+            this.ModPartButton.Size = new System.Drawing.Size(75, 23);
+            this.ModPartButton.TabIndex = 3;
+            this.ModPartButton.Text = "Modify";
+            this.ModPartButton.UseVisualStyleBackColor = true;
+            this.ModPartButton.Click += new System.EventHandler(this.ModPartButton_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -128,6 +140,7 @@
         private System.Windows.Forms.TextBox PartSearch;
         private System.Windows.Forms.Label Label;
         private System.Windows.Forms.Button AddPartButton;
+        private System.Windows.Forms.Button ModPartButton;
     }
 }
 

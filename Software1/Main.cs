@@ -44,5 +44,14 @@ namespace Software1
         {
 
         }
+
+        private void ModPartButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            ModPart mod = new ModPart();
+            mod.ShowDialog();
+            mod = null;
+            Show();
+        }
     }
 }
