@@ -30,6 +30,7 @@ namespace Software1
                 {
                     MachineLabel.Text = "Company Name";
                     EnterMachID.Text = "Company Name";
+                    var outsourced = true;
                 }
             }
         }
@@ -47,6 +48,7 @@ namespace Software1
                 {
                     MachineLabel.Text = "Machine ID";
                     EnterMachID.Text = "Mach ID";
+                    var outsourced = false;
                 }
             }
 
@@ -86,6 +88,16 @@ namespace Software1
             if (errormsg != null)
             {
                 ErrorLabel.Text = errormsg;
+            }
+            else
+            {
+                //TODO catch if it's outsourced, add all fields, add part to an array. Test gets.
+                InHouse part = new InHouse();
+                Random rnd = new Random();
+                int rndprtid = rnd.Next(1, 99999);
+                part.SetPartID(rndprtid);
+                part.SetName(EnterPartName.Text);
+                part.SetPrice(System.Convert.ToDouble(EnterPrice.Text));
             }
         }
     }
