@@ -64,6 +64,7 @@
     <Compile Include="ModPart.Designer.cs">
       <DependentUpon>ModPart.cs</DependentUpon>
     </Compile>
+    <Compile Include="part.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddPart.resx">
