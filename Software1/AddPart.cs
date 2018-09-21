@@ -30,7 +30,6 @@ namespace Software1
                 {
                     MachineLabel.Text = "Company Name";
                     EnterMachID.Text = "Company Name";
-                    var outsourced = true;
                 }
             }
         }
@@ -48,7 +47,6 @@ namespace Software1
                 {
                     MachineLabel.Text = "Machine ID";
                     EnterMachID.Text = "Mach ID";
-                    var outsourced = false;
                 }
             }
 
