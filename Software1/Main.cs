@@ -16,7 +16,6 @@ namespace Software1
         {
             InitializeComponent();
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -37,7 +36,10 @@ namespace Software1
         }
         private void PartSearchButton_Click(object sender, EventArgs e)
         {
-
+            foreach (dynamic part in ApplicationData.AllParts)
+            {
+                Console.WriteLine(part.Name);
+            }
         }
 
         private void PartSearch_TextChanged(object sender, EventArgs e)

@@ -66,6 +66,7 @@ namespace Software1
 
         private void Save_Click(object sender, EventArgs e)
         {
+
             //Error Handling
             var errormsg = string.Empty;
             int result;
@@ -83,19 +84,44 @@ namespace Software1
             {
                 errormsg += "Max must be greater than Min and Min must be greater than Max!";
             }
-            if (errormsg != null)
+            //If there is an error, display error messages in Add Part window.
+            if (errormsg != "")
             {
                 ErrorLabel.Text = errormsg;
             }
             else
             {
                 //TODO catch if it's outsourced, add all fields, add part to an array. Test gets.
-                InHouse part = new InHouse();
-                Random rnd = new Random();
-                int rndprtid = rnd.Next(1, 99999);
-                part.SetPartID(rndprtid);
-                part.SetName(EnterPartName.Text);
-                part.SetPrice(System.Convert.ToDouble(EnterPrice.Text));
+                //Create InHouse part object
+                if (MachineLabel.Text == "Machine ID")
+                {
+                    InHouse part = new InHouse();
+                    Random rnd = new Random();
+                    int rndprtid = rnd.Next(1, 99999);
+                    part.partID = rndprtid;
+                    part.Name = EnterPartName.Text;
+                    part.Price = System.Convert.ToDouble(EnterPrice.Text);
+                    part.inStock = System.Convert.ToInt32(EnterInv.Text);
+                    part.Min = System.Convert.ToInt32(EnterMin.Text);
+                    part.Max = System.Convert.ToInt32(EnterMax.Text);
+                    part.MachineID = System.Convert.ToInt32(EnterMachID.Text);
+                    ApplicationData.AllParts.Add(part);
+                }
+                else
+                {
+                    Outsourced part = new Outsourced();
+                    Random rnd = new Random();
+                    int rndprtid = rnd.Next(1, 99999);
+                    part.partID = rndprtid;
+                    part.Name = EnterPartName.Text;
+                    part.Price = System.Convert.ToDouble(EnterPrice.Text);
+                    part.inStock = System.Convert.ToInt32(EnterInv.Text);
+                    part.Min = System.Convert.ToInt32(EnterMin.Text);
+                    part.Max = System.Convert.ToInt32(EnterMax.Text);
+                    part.companyName = EnterMachID.Text;
+                    ApplicationData.AllParts.Add(part);
+                }
+                Close();
             }
         }
     }
