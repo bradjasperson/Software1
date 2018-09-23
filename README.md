@@ -1,13 +1,17 @@
 TODO:
 
-Create object with add part (inhouse and outsourced).
+Modify Part
 
-Save object to array.
+Add Product
 
-Search for part in array.
+Main GUI Page
 
-Display results in gui.
+Product Class
 
-delete selected part.
+List of associated parts
 
-Add Product....
+  add to
+  remove
+  
+Delete Product
+Error Handling
