@@ -30,11 +30,17 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.Parts = new System.Windows.Forms.GroupBox();
+            this.ModPartButton = new System.Windows.Forms.Button();
             this.AddPartButton = new System.Windows.Forms.Button();
             this.PartSearchButton = new System.Windows.Forms.Button();
             this.PartSearch = new System.Windows.Forms.TextBox();
             this.Label = new System.Windows.Forms.Label();
-            this.ModPartButton = new System.Windows.Forms.Button();
+            this.PartResults = new System.Windows.Forms.ListView();
+            this.PartResultID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PartResultName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PartResultInv = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PartResultPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DelPartButton = new System.Windows.Forms.Button();
             this.Parts.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +58,8 @@
             // 
             // Parts
             // 
+            this.Parts.Controls.Add(this.DelPartButton);
+            this.Parts.Controls.Add(this.PartResults);
             this.Parts.Controls.Add(this.ModPartButton);
             this.Parts.Controls.Add(this.AddPartButton);
             this.Parts.Controls.Add(this.PartSearchButton);
@@ -59,15 +67,25 @@
             this.Parts.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Parts.Location = new System.Drawing.Point(19, 84);
             this.Parts.Name = "Parts";
-            this.Parts.Size = new System.Drawing.Size(592, 309);
+            this.Parts.Size = new System.Drawing.Size(429, 309);
             this.Parts.TabIndex = 1;
             this.Parts.TabStop = false;
             this.Parts.Text = "Parts";
             this.Parts.Enter += new System.EventHandler(this.Parts_Enter);
             // 
+            // ModPartButton
+            // 
+            this.ModPartButton.Location = new System.Drawing.Point(186, 194);
+            this.ModPartButton.Name = "ModPartButton";
+            this.ModPartButton.Size = new System.Drawing.Size(75, 23);
+            this.ModPartButton.TabIndex = 3;
+            this.ModPartButton.Text = "Modify";
+            this.ModPartButton.UseVisualStyleBackColor = true;
+            this.ModPartButton.Click += new System.EventHandler(this.ModPartButton_Click);
+            // 
             // AddPartButton
             // 
-            this.AddPartButton.Location = new System.Drawing.Point(352, 108);
+            this.AddPartButton.Location = new System.Drawing.Point(88, 194);
             this.AddPartButton.Name = "AddPartButton";
             this.AddPartButton.Size = new System.Drawing.Size(75, 23);
             this.AddPartButton.TabIndex = 2;
@@ -77,7 +95,7 @@
             // 
             // PartSearchButton
             // 
-            this.PartSearchButton.Location = new System.Drawing.Point(499, 17);
+            this.PartSearchButton.Location = new System.Drawing.Point(320, 17);
             this.PartSearchButton.Name = "PartSearchButton";
             this.PartSearchButton.Size = new System.Drawing.Size(75, 23);
             this.PartSearchButton.TabIndex = 1;
@@ -87,7 +105,7 @@
             // 
             // PartSearch
             // 
-            this.PartSearch.Location = new System.Drawing.Point(283, 19);
+            this.PartSearch.Location = new System.Drawing.Point(88, 17);
             this.PartSearch.Name = "PartSearch";
             this.PartSearch.Size = new System.Drawing.Size(210, 20);
             this.PartSearch.TabIndex = 0;
@@ -104,15 +122,54 @@
             this.Label.TabIndex = 2;
             this.Label.Text = "Inventory Management System";
             // 
-            // ModPartButton
+            // PartResults
             // 
-            this.ModPartButton.Location = new System.Drawing.Point(467, 107);
-            this.ModPartButton.Name = "ModPartButton";
-            this.ModPartButton.Size = new System.Drawing.Size(75, 23);
-            this.ModPartButton.TabIndex = 3;
-            this.ModPartButton.Text = "Modify";
-            this.ModPartButton.UseVisualStyleBackColor = true;
-            this.ModPartButton.Click += new System.EventHandler(this.ModPartButton_Click);
+            this.PartResults.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.PartResultID,
+            this.PartResultName,
+            this.PartResultInv,
+            this.PartResultPrice});
+            this.PartResults.FullRowSelect = true;
+            this.PartResults.GridLines = true;
+            this.PartResults.Location = new System.Drawing.Point(6, 73);
+            this.PartResults.Name = "PartResults";
+            this.PartResults.Size = new System.Drawing.Size(414, 97);
+            this.PartResults.TabIndex = 4;
+            this.PartResults.UseCompatibleStateImageBehavior = false;
+            this.PartResults.View = System.Windows.Forms.View.Details;
+            this.PartResults.SelectedIndexChanged += new System.EventHandler(this.PartResults_SelectedIndexChanged);
+            // 
+            // PartResultID
+            // 
+            this.PartResultID.Text = "Part ID";
+            // 
+            // PartResultName
+            // 
+            this.PartResultName.Text = "Part Name";
+            this.PartResultName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PartResultName.Width = 120;
+            // 
+            // PartResultInv
+            // 
+            this.PartResultInv.Text = "Inventory Level";
+            this.PartResultInv.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PartResultInv.Width = 100;
+            // 
+            // PartResultPrice
+            // 
+            this.PartResultPrice.Text = "Price/Cost Per Unit";
+            this.PartResultPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PartResultPrice.Width = 130;
+            // 
+            // DelPartButton
+            // 
+            this.DelPartButton.Location = new System.Drawing.Point(288, 194);
+            this.DelPartButton.Name = "DelPartButton";
+            this.DelPartButton.Size = new System.Drawing.Size(75, 23);
+            this.DelPartButton.TabIndex = 5;
+            this.DelPartButton.Text = "Delete";
+            this.DelPartButton.UseVisualStyleBackColor = true;
+            this.DelPartButton.Click += new System.EventHandler(this.DelPartButton_Click);
             // 
             // Main
             // 
@@ -141,6 +198,12 @@
         private System.Windows.Forms.Label Label;
         private System.Windows.Forms.Button AddPartButton;
         private System.Windows.Forms.Button ModPartButton;
+        private System.Windows.Forms.ListView PartResults;
+        private System.Windows.Forms.ColumnHeader PartResultID;
+        private System.Windows.Forms.ColumnHeader PartResultName;
+        private System.Windows.Forms.Button DelPartButton;
+        private System.Windows.Forms.ColumnHeader PartResultInv;
+        private System.Windows.Forms.ColumnHeader PartResultPrice;
     }
 }
 

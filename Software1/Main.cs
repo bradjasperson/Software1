@@ -16,6 +16,7 @@ namespace Software1
         {
             InitializeComponent();
         }
+        public static String partselected = String.Empty;
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -36,9 +37,21 @@ namespace Software1
         }
         private void PartSearchButton_Click(object sender, EventArgs e)
         {
+            //Formatting
+            PartResults.Items.Add("");
+            PartResults.Items.Clear();
+            //Search for parts that match the term
             foreach (dynamic part in ApplicationData.AllParts)
             {
-                Console.WriteLine(part.Name);
+                if (part.Name.ToLower().Contains(PartSearch.Text.ToLower()) && PartSearch.Text != "")
+                {
+                    string id = System.Convert.ToString(part.partID);
+                    string inv = System.Convert.ToString(part.inStock);
+                    string price = System.Convert.ToString(part.Price);
+                    string[] row = { id, part.Name, inv, price};
+                    var listViewItem = new ListViewItem(row);
+                    PartResults.Items.Add(listViewItem);
+                }
             }
         }
 
@@ -54,6 +67,33 @@ namespace Software1
             mod.ShowDialog();
             mod = null;
             Show();
+        }
+
+        private void PartResults_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            partselected = PartResults.SelectedItems[0].Text;
+        }
+
+        private void DelPartButton_Click(object sender, EventArgs e)
+        {
+            dynamic deletepart = string.Empty;
+            //Confirm Delete
+            var confirmResult = MessageBox.Show("Are you sure you want to delete the selected item?",
+                                     "Confirm Delete",
+                                     MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.Yes)
+            {     
+                foreach (dynamic part in ApplicationData.AllParts)
+                {
+                    if (System.Convert.ToString(part.partID) == partselected)
+                    {
+                        deletepart = part;
+                        PartResults.Items.Clear();
+                    }
+                }
+                ApplicationData.AllParts.Remove(deletepart);
+            }
         }
     }
 }
