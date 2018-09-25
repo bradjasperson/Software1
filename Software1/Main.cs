@@ -59,19 +59,29 @@ namespace Software1
         {
 
         }
-
-        private void ModPartButton_Click(object sender, EventArgs e)
-        {
-            Hide();
-            ModPart mod = new ModPart();
-            mod.ShowDialog();
-            mod = null;
-            Show();
-        }
-
         private void PartResults_SelectedIndexChanged(object sender, EventArgs e)
         {
             partselected = PartResults.SelectedItems[0].Text;
+        }
+        private void ModPartButton_Click(object sender, EventArgs e)
+        {
+            if (partselected != "")
+            {
+                dynamic modpart = string.Empty;
+                foreach (dynamic part in ApplicationData.AllParts)
+                {
+                    if (System.Convert.ToString(part.partID) == partselected)
+                    {
+                        modpart = part;
+                        PartResults.Items.Clear();
+                    }
+                }
+                Hide();
+                ModPart mod = new ModPart(modpart);
+                mod.ShowDialog();
+                mod = null;
+                Show();
+            }
         }
 
         private void DelPartButton_Click(object sender, EventArgs e)

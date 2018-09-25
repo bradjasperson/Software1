@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.AddPartBox = new System.Windows.Forms.GroupBox();
             this.ErrorLabel = new System.Windows.Forms.Label();
             this.Save = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
@@ -46,36 +46,40 @@
             this.EnterPartName = new System.Windows.Forms.TextBox();
             this.OutsourcedRD = new System.Windows.Forms.RadioButton();
             this.InHouseRD = new System.Windows.Forms.RadioButton();
-            this.groupBox1.SuspendLayout();
+            this.ROPartID = new System.Windows.Forms.TextBox();
+            this.IdLabel = new System.Windows.Forms.Label();
+            this.AddPartBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // AddPartBox
             // 
-            this.groupBox1.Controls.Add(this.ErrorLabel);
-            this.groupBox1.Controls.Add(this.Save);
-            this.groupBox1.Controls.Add(this.Cancel);
-            this.groupBox1.Controls.Add(this.EnterMin);
-            this.groupBox1.Controls.Add(this.EnterMax);
-            this.groupBox1.Controls.Add(this.MinLabel);
-            this.groupBox1.Controls.Add(this.MaxLabel);
-            this.groupBox1.Controls.Add(this.MachineLabel);
-            this.groupBox1.Controls.Add(this.EnterMachID);
-            this.groupBox1.Controls.Add(this.EnterPrice);
-            this.groupBox1.Controls.Add(this.PriceLabel);
-            this.groupBox1.Controls.Add(this.EnterInv);
-            this.groupBox1.Controls.Add(this.InvLabel);
-            this.groupBox1.Controls.Add(this.NameLabel);
-            this.groupBox1.Controls.Add(this.EnterPartName);
-            this.groupBox1.Controls.Add(this.OutsourcedRD);
-            this.groupBox1.Controls.Add(this.InHouseRD);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(469, 426);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Add Part";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.AddPartBox.Controls.Add(this.ROPartID);
+            this.AddPartBox.Controls.Add(this.IdLabel);
+            this.AddPartBox.Controls.Add(this.ErrorLabel);
+            this.AddPartBox.Controls.Add(this.Save);
+            this.AddPartBox.Controls.Add(this.Cancel);
+            this.AddPartBox.Controls.Add(this.EnterMin);
+            this.AddPartBox.Controls.Add(this.EnterMax);
+            this.AddPartBox.Controls.Add(this.MinLabel);
+            this.AddPartBox.Controls.Add(this.MaxLabel);
+            this.AddPartBox.Controls.Add(this.MachineLabel);
+            this.AddPartBox.Controls.Add(this.EnterMachID);
+            this.AddPartBox.Controls.Add(this.EnterPrice);
+            this.AddPartBox.Controls.Add(this.PriceLabel);
+            this.AddPartBox.Controls.Add(this.EnterInv);
+            this.AddPartBox.Controls.Add(this.InvLabel);
+            this.AddPartBox.Controls.Add(this.NameLabel);
+            this.AddPartBox.Controls.Add(this.EnterPartName);
+            this.AddPartBox.Controls.Add(this.OutsourcedRD);
+            this.AddPartBox.Controls.Add(this.InHouseRD);
+            this.AddPartBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddPartBox.Location = new System.Drawing.Point(12, 12);
+            this.AddPartBox.Name = "AddPartBox";
+            this.AddPartBox.Size = new System.Drawing.Size(469, 426);
+            this.AddPartBox.TabIndex = 0;
+            this.AddPartBox.TabStop = false;
+            this.AddPartBox.Text = "Add Part";
+            this.AddPartBox.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // ErrorLabel
             // 
@@ -110,7 +114,7 @@
             // EnterMin
             // 
             this.EnterMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnterMin.Location = new System.Drawing.Point(279, 213);
+            this.EnterMin.Location = new System.Drawing.Point(276, 248);
             this.EnterMin.Name = "EnterMin";
             this.EnterMin.Size = new System.Drawing.Size(85, 20);
             this.EnterMin.TabIndex = 13;
@@ -119,7 +123,7 @@
             // EnterMax
             // 
             this.EnterMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnterMax.Location = new System.Drawing.Point(133, 213);
+            this.EnterMax.Location = new System.Drawing.Point(130, 248);
             this.EnterMax.Name = "EnterMax";
             this.EnterMax.Size = new System.Drawing.Size(85, 20);
             this.EnterMax.TabIndex = 12;
@@ -128,7 +132,7 @@
             // MinLabel
             // 
             this.MinLabel.AutoSize = true;
-            this.MinLabel.Location = new System.Drawing.Point(236, 213);
+            this.MinLabel.Location = new System.Drawing.Point(233, 248);
             this.MinLabel.Name = "MinLabel";
             this.MinLabel.Size = new System.Drawing.Size(27, 13);
             this.MinLabel.TabIndex = 11;
@@ -137,7 +141,7 @@
             // MaxLabel
             // 
             this.MaxLabel.AutoSize = true;
-            this.MaxLabel.Location = new System.Drawing.Point(6, 213);
+            this.MaxLabel.Location = new System.Drawing.Point(3, 248);
             this.MaxLabel.Name = "MaxLabel";
             this.MaxLabel.Size = new System.Drawing.Size(30, 13);
             this.MaxLabel.TabIndex = 10;
@@ -146,7 +150,7 @@
             // MachineLabel
             // 
             this.MachineLabel.AutoSize = true;
-            this.MachineLabel.Location = new System.Drawing.Point(6, 177);
+            this.MachineLabel.Location = new System.Drawing.Point(3, 212);
             this.MachineLabel.Name = "MachineLabel";
             this.MachineLabel.Size = new System.Drawing.Size(72, 13);
             this.MachineLabel.TabIndex = 9;
@@ -155,7 +159,7 @@
             // EnterMachID
             // 
             this.EnterMachID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnterMachID.Location = new System.Drawing.Point(133, 177);
+            this.EnterMachID.Location = new System.Drawing.Point(130, 212);
             this.EnterMachID.Name = "EnterMachID";
             this.EnterMachID.Size = new System.Drawing.Size(231, 20);
             this.EnterMachID.TabIndex = 8;
@@ -164,7 +168,7 @@
             // EnterPrice
             // 
             this.EnterPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnterPrice.Location = new System.Drawing.Point(133, 141);
+            this.EnterPrice.Location = new System.Drawing.Point(130, 176);
             this.EnterPrice.Name = "EnterPrice";
             this.EnterPrice.Size = new System.Drawing.Size(231, 20);
             this.EnterPrice.TabIndex = 7;
@@ -173,7 +177,7 @@
             // PriceLabel
             // 
             this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Location = new System.Drawing.Point(6, 141);
+            this.PriceLabel.Location = new System.Drawing.Point(3, 176);
             this.PriceLabel.Name = "PriceLabel";
             this.PriceLabel.Size = new System.Drawing.Size(67, 13);
             this.PriceLabel.TabIndex = 6;
@@ -182,7 +186,7 @@
             // EnterInv
             // 
             this.EnterInv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnterInv.Location = new System.Drawing.Point(133, 105);
+            this.EnterInv.Location = new System.Drawing.Point(130, 140);
             this.EnterInv.Name = "EnterInv";
             this.EnterInv.Size = new System.Drawing.Size(231, 20);
             this.EnterInv.TabIndex = 5;
@@ -191,7 +195,7 @@
             // InvLabel
             // 
             this.InvLabel.AutoSize = true;
-            this.InvLabel.Location = new System.Drawing.Point(6, 105);
+            this.InvLabel.Location = new System.Drawing.Point(3, 140);
             this.InvLabel.Name = "InvLabel";
             this.InvLabel.Size = new System.Drawing.Size(60, 13);
             this.InvLabel.TabIndex = 4;
@@ -200,7 +204,7 @@
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(6, 70);
+            this.NameLabel.Location = new System.Drawing.Point(3, 105);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(39, 13);
             this.NameLabel.TabIndex = 3;
@@ -209,7 +213,7 @@
             // EnterPartName
             // 
             this.EnterPartName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnterPartName.Location = new System.Drawing.Point(133, 67);
+            this.EnterPartName.Location = new System.Drawing.Point(130, 102);
             this.EnterPartName.Name = "EnterPartName";
             this.EnterPartName.Size = new System.Drawing.Size(231, 20);
             this.EnterPartName.TabIndex = 2;
@@ -239,24 +243,43 @@
             this.InHouseRD.UseVisualStyleBackColor = true;
             this.InHouseRD.CheckedChanged += new System.EventHandler(this.InHouseRD_CheckedChanged);
             // 
+            // ROPartID
+            // 
+            this.ROPartID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ROPartID.Location = new System.Drawing.Point(131, 66);
+            this.ROPartID.Name = "ROPartID";
+            this.ROPartID.ReadOnly = true;
+            this.ROPartID.Size = new System.Drawing.Size(231, 20);
+            this.ROPartID.TabIndex = 20;
+            this.ROPartID.Text = "Auto Gen";
+            // 
+            // IdLabel
+            // 
+            this.IdLabel.AutoSize = true;
+            this.IdLabel.Location = new System.Drawing.Point(6, 69);
+            this.IdLabel.Name = "IdLabel";
+            this.IdLabel.Size = new System.Drawing.Size(47, 13);
+            this.IdLabel.TabIndex = 19;
+            this.IdLabel.Text = "Part ID";
+            // 
             // AddPart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(495, 454);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.AddPartBox);
             this.Name = "AddPart";
             this.Text = "Add Part";
             this.Load += new System.EventHandler(this.AddPart_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.AddPartBox.ResumeLayout(false);
+            this.AddPartBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox AddPartBox;
         private System.Windows.Forms.RadioButton OutsourcedRD;
         private System.Windows.Forms.RadioButton InHouseRD;
         private System.Windows.Forms.TextBox EnterMin;
@@ -274,5 +297,7 @@
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.Label ErrorLabel;
+        private System.Windows.Forms.TextBox ROPartID;
+        private System.Windows.Forms.Label IdLabel;
     }
 }

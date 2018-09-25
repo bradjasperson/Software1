@@ -91,36 +91,30 @@ namespace Software1
             }
             else
             {
-                //TODO catch if it's outsourced, add all fields, add part to an array. Test gets.
+                dynamic part;
                 //Create InHouse part object
                 if (MachineLabel.Text == "Machine ID")
                 {
-                    InHouse part = new InHouse();
-                    Random rnd = new Random();
-                    int rndprtid = rnd.Next(1, 99999);
-                    part.partID = rndprtid;
-                    part.Name = EnterPartName.Text;
-                    part.Price = System.Convert.ToDouble(EnterPrice.Text);
-                    part.inStock = System.Convert.ToInt32(EnterInv.Text);
-                    part.Min = System.Convert.ToInt32(EnterMin.Text);
-                    part.Max = System.Convert.ToInt32(EnterMax.Text);
+                    part = new InHouse();
                     part.MachineID = System.Convert.ToInt32(EnterMachID.Text);
-                    ApplicationData.AllParts.Add(part);
                 }
                 else
+                //Create Outsourced part object
                 {
-                    Outsourced part = new Outsourced();
-                    Random rnd = new Random();
-                    int rndprtid = rnd.Next(1, 99999);
-                    part.partID = rndprtid;
-                    part.Name = EnterPartName.Text;
-                    part.Price = System.Convert.ToDouble(EnterPrice.Text);
-                    part.inStock = System.Convert.ToInt32(EnterInv.Text);
-                    part.Min = System.Convert.ToInt32(EnterMin.Text);
-                    part.Max = System.Convert.ToInt32(EnterMax.Text);
-                    part.companyName = EnterMachID.Text;
-                    ApplicationData.AllParts.Add(part);
+                    part = new Outsourced();
+                    part.companyName = EnterMachID.Text; 
                 }
+                //Populate the rest of the object properties
+                Random rnd = new Random();
+                int rndprtid = rnd.Next(1, 99999);
+                part.partID = rndprtid;
+                part.Name = EnterPartName.Text;
+                part.Price = System.Convert.ToDouble(EnterPrice.Text);
+                part.inStock = System.Convert.ToInt32(EnterInv.Text);
+                part.Min = System.Convert.ToInt32(EnterMin.Text);
+                part.Max = System.Convert.ToInt32(EnterMax.Text);
+                //Add the part to the list of parts
+                ApplicationData.AllParts.Add(part);
                 Close();
             }
         }
