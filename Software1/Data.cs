@@ -17,5 +17,13 @@ namespace Software1
 
         }
         private static List<Part> _allParts = new List<Part>();
+        public static List<Product> AllProducts
+        {
+            get
+            {
+                return ApplicationData._allProducts;
+            }
+        }
+        public static List<Product> _allProducts = new List<Product>();
     }
 }

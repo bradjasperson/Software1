@@ -105,5 +105,42 @@ namespace Software1
                 ApplicationData.AllParts.Remove(deletepart);
             }
         }
+
+
+        private void ProductAddButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            AddProduct add = new AddProduct();
+            add.ShowDialog();
+            add = null;
+            Show();
+        }
+
+        private void ProductDeleteButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ProductModifyButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ProductSearchButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            //Confirm Exit
+            var confirmResult = MessageBox.Show("Are you sure you want to exit?",
+                                     "Confirm Exit",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                Close();
+            }
+        }
     }
 }
