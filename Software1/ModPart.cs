@@ -36,8 +36,6 @@ namespace Software1
             EnterPrice.Text = price;
             EnterMin.Text = min;
             EnterMax.Text = max;
-
-            //Remove Part, It will be recreated as a new part but with the same ID
         }
        
         private void ModPartGrp_Enter(object sender, EventArgs e)

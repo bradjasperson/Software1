@@ -43,7 +43,7 @@
             this.Label = new System.Windows.Forms.Label();
             this.Products = new System.Windows.Forms.GroupBox();
             this.ProductDeleteButton = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.ProductResults = new System.Windows.Forms.ListView();
             this.ProductResultID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ProductResultName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ProductResultInv = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,6 +53,7 @@
             this.ProductSearchButton = new System.Windows.Forms.Button();
             this.ProductSearch = new System.Windows.Forms.TextBox();
             this.ExitButton = new System.Windows.Forms.Button();
+            this.ErrorLabel = new System.Windows.Forms.Label();
             this.Parts.SuspendLayout();
             this.Products.SuspendLayout();
             this.SuspendLayout();
@@ -187,15 +188,15 @@
             // Products
             // 
             this.Products.Controls.Add(this.ProductDeleteButton);
-            this.Products.Controls.Add(this.listView1);
+            this.Products.Controls.Add(this.ProductResults);
             this.Products.Controls.Add(this.ProductModifyButton);
             this.Products.Controls.Add(this.ProductAddButton);
             this.Products.Controls.Add(this.ProductSearchButton);
             this.Products.Controls.Add(this.ProductSearch);
             this.Products.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Products.Location = new System.Drawing.Point(533, 60);
+            this.Products.Location = new System.Drawing.Point(517, 60);
             this.Products.Name = "Products";
-            this.Products.Size = new System.Drawing.Size(429, 309);
+            this.Products.Size = new System.Drawing.Size(445, 309);
             this.Products.TabIndex = 3;
             this.Products.TabStop = false;
             this.Products.Text = "Products";
@@ -210,25 +211,27 @@
             this.ProductDeleteButton.UseVisualStyleBackColor = true;
             this.ProductDeleteButton.Click += new System.EventHandler(this.ProductDeleteButton_Click);
             // 
-            // listView1
+            // ProductResults
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ProductResults.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ProductResultID,
             this.ProductResultName,
             this.ProductResultInv,
             this.ProductResultPrice});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(6, 73);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(414, 97);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.ProductResults.FullRowSelect = true;
+            this.ProductResults.GridLines = true;
+            this.ProductResults.Location = new System.Drawing.Point(6, 73);
+            this.ProductResults.Name = "ProductResults";
+            this.ProductResults.Size = new System.Drawing.Size(433, 97);
+            this.ProductResults.TabIndex = 4;
+            this.ProductResults.UseCompatibleStateImageBehavior = false;
+            this.ProductResults.View = System.Windows.Forms.View.Details;
+            this.ProductResults.SelectedIndexChanged += new System.EventHandler(this.ProductResults_SelectedIndexChanged);
             // 
             // ProductResultID
             // 
             this.ProductResultID.Text = "Product ID";
+            this.ProductResultID.Width = 75;
             // 
             // ProductResultName
             // 
@@ -296,12 +299,22 @@
             this.ExitButton.UseVisualStyleBackColor = true;
             this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
+            // ErrorLabel
+            // 
+            this.ErrorLabel.AutoSize = true;
+            this.ErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.ErrorLabel.Location = new System.Drawing.Point(21, 397);
+            this.ErrorLabel.Name = "ErrorLabel";
+            this.ErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.ErrorLabel.TabIndex = 5;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(978, 453);
+            this.Controls.Add(this.ErrorLabel);
             this.Controls.Add(this.ExitButton);
             this.Controls.Add(this.Products);
             this.Controls.Add(this.Label);
@@ -335,7 +348,7 @@
         private System.Windows.Forms.ColumnHeader PartResultPrice;
         private System.Windows.Forms.GroupBox Products;
         private System.Windows.Forms.Button ProductDeleteButton;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView ProductResults;
         private System.Windows.Forms.ColumnHeader ProductResultID;
         private System.Windows.Forms.ColumnHeader ProductResultName;
         private System.Windows.Forms.ColumnHeader ProductResultInv;
@@ -345,6 +358,7 @@
         private System.Windows.Forms.Button ProductSearchButton;
         private System.Windows.Forms.TextBox ProductSearch;
         private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Label ErrorLabel;
     }
 }
 

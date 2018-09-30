@@ -21,7 +21,7 @@ namespace Software1
         {
 
         }
-
+        //Radio button change to outsourced
         private void OutsourcedRD_CheckedChanged(object sender, EventArgs e)
         {
             if (sender is RadioButton radioButton)
@@ -38,7 +38,7 @@ namespace Software1
         {
 
         }
-
+        //Radio button change to inhouse
         private void InHouseRD_CheckedChanged(object sender, EventArgs e)
         {
             if (sender is RadioButton radioButton)
@@ -51,7 +51,7 @@ namespace Software1
             }
 
         }
-
+        //Cancel
         private void Cancel_Click(object sender, EventArgs e)
         {
             //Confirm Cancel
@@ -63,7 +63,7 @@ namespace Software1
                 Close();
             }
         }
-
+        //Save part
         private void Save_Click(object sender, EventArgs e)
         {
 

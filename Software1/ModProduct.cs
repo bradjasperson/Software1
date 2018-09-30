@@ -10,19 +10,49 @@ using System.Windows.Forms;
 
 namespace Software1
 {
-    public partial class AddProduct : Form
+    public partial class ModProduct : Form
     {
-        public AddProduct()
+        public ModProduct(Product product)
         {
             InitializeComponent();
+            //Populate text fields with values of selected part to modify.
+            var productid = System.Convert.ToString(product.productID);
+            var inv = System.Convert.ToString(product.inStock);
+            var min = System.Convert.ToString(product.Min);
+            var max = System.Convert.ToString(product.Max);
+            var price = System.Convert.ToString(product.Price);
+            EnterProductName.Text = product.Name;
+            ROProductID.Text = productid;
+            EnterInv.Text = inv;
+            EnterPrice.Text = price;
+            EnterMin.Text = min;
+            EnterMax.Text = max;
+            //Populate the parts that are part of the product to the listview
+            foreach (dynamic part in product.AssociatedParts)
+            {
+                var partid = System.Convert.ToString(part.partID);
+                var partinv = System.Convert.ToString(part.inStock);
+                var partprice = System.Convert.ToString(part.Price);
+                string[] row = { partid, part.Name, partinv, partprice };
+                var listViewItem = new ListViewItem(row);
+                PartList.Items.Add(listViewItem);
+            }
         }
         //Initialize partselected variable
         public static String partselected = String.Empty;
-        private void AddProductBox_Enter(object sender, EventArgs e)
+        //Set the variable partselected if an item in the box is clicked
+        private void PartResults_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                partselected = PartResults.SelectedItems[0].Text;
+            }
+            catch
+            {
+                partselected = string.Empty;
+            }
         }
-        //Search for part
+        //Search parts
         private void SearchPart_Click(object sender, EventArgs e)
         {
             //Formatting
@@ -42,19 +72,7 @@ namespace Software1
                 }
             }
         }
-        //Save partselected
-        private void PartResults_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                partselected = PartResults.SelectedItems[0].Text;
-            }
-            catch
-            {
-                partselected = string.Empty;
-            }
-        }
-        //Add selected part to partlist
+        //Add part to productlist
         private void AddPartButton_Click(object sender, EventArgs e)
         {
             if (partselected != "")
@@ -75,7 +93,7 @@ namespace Software1
                 }
             }
         }
-        //Delete selected part from partlist
+        //Delete part from product list
         private void DeletePart_Click(object sender, EventArgs e)
         {
             if (PartList.SelectedItems[0].ToString() != "")
@@ -84,7 +102,7 @@ namespace Software1
             }
         }
         //Cancel
-        private void CancelButton_Click(object sender, EventArgs e)
+        private void Cancel_Click(object sender, EventArgs e)
         {
             //Confirm Cancel
             var confirmResult = MessageBox.Show("Are you sure you want to cancel?",
@@ -95,7 +113,7 @@ namespace Software1
                 Close();
             }
         }
-        //Save the product
+        //Save modified part to product list
         private void SaveButton_Click(object sender, EventArgs e)
         {
             //Error Handling
@@ -106,9 +124,9 @@ namespace Software1
             double productcost;
             //Get the list of parts to add to the product as a list of Parts type
             List<Part> parts = new List<Part>();
-            if(PartList != null)
+            if (PartList != null)
             {
-                foreach(ListViewItem listpart in PartList.Items)
+                foreach (ListViewItem listpart in PartList.Items)
                 {
                     foreach (dynamic partfind in ApplicationData.AllParts)
                     {
@@ -121,7 +139,7 @@ namespace Software1
             }
             //Get the total cost of parts
             double partcosttotal = 0;
-            foreach(dynamic part in parts)
+            foreach (dynamic part in parts)
             {
                 partcosttotal += part.Price;
             }
@@ -154,19 +172,18 @@ namespace Software1
             else
             {
                 Product product = new Product();
-               
+
                 //Populate the rest of the object properties
-                Random rnd = new Random();
-                int rndprtid = rnd.Next(1, 99999);
-                product.productID = rndprtid;
+                product.productID = System.Convert.ToInt32(ROProductID.Text);
                 product.Name = EnterProductName.Text;
                 product.Price = System.Convert.ToDouble(EnterPrice.Text);
                 product.inStock = System.Convert.ToInt32(EnterInv.Text);
                 product.Min = System.Convert.ToInt32(EnterMin.Text);
                 product.Max = System.Convert.ToInt32(EnterMax.Text);
                 product.AssociatedParts = parts;
-                //Add the part to the list of parts
-                ApplicationData.AllProducts.Add(product);
+                //Add the modified part to the list of parts
+                int index = ApplicationData.AllProducts.FindIndex(a => a.productID == product.productID);
+                ApplicationData.AllProducts[index] = product;
                 Close();
             }
         }

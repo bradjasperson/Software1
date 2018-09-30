@@ -1,6 +1,6 @@
 ﻿namespace Software1
 {
-    partial class AddProduct
+    partial class ModProduct
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.AddProductBox = new System.Windows.Forms.GroupBox();
+            this.ErrorLabel = new System.Windows.Forms.Label();
+            this.DeletePart = new System.Windows.Forms.Button();
+            this.AddPartButton = new System.Windows.Forms.Button();
+            this.SearchPart = new System.Windows.Forms.Button();
+            this.Cancel = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.PartList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,11 +58,6 @@
             this.InvLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.EnterProductName = new System.Windows.Forms.TextBox();
-            this.Cancel = new System.Windows.Forms.Button();
-            this.SearchPart = new System.Windows.Forms.Button();
-            this.AddPartButton = new System.Windows.Forms.Button();
-            this.DeletePart = new System.Windows.Forms.Button();
-            this.ErrorLabel = new System.Windows.Forms.Label();
             this.AddProductBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,10 +88,59 @@
             this.AddProductBox.Location = new System.Drawing.Point(12, 12);
             this.AddProductBox.Name = "AddProductBox";
             this.AddProductBox.Size = new System.Drawing.Size(877, 521);
-            this.AddProductBox.TabIndex = 1;
+            this.AddProductBox.TabIndex = 2;
             this.AddProductBox.TabStop = false;
-            this.AddProductBox.Text = "Add Product";
-            this.AddProductBox.Enter += new System.EventHandler(this.AddProductBox_Enter);
+            this.AddProductBox.Text = "Modify Product";
+            // 
+            // ErrorLabel
+            // 
+            this.ErrorLabel.AutoSize = true;
+            this.ErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.ErrorLabel.Location = new System.Drawing.Point(15, 390);
+            this.ErrorLabel.Name = "ErrorLabel";
+            this.ErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.ErrorLabel.TabIndex = 32;
+            // 
+            // DeletePart
+            // 
+            this.DeletePart.Location = new System.Drawing.Point(795, 419);
+            this.DeletePart.Name = "DeletePart";
+            this.DeletePart.Size = new System.Drawing.Size(75, 23);
+            this.DeletePart.TabIndex = 31;
+            this.DeletePart.Text = "Delete";
+            this.DeletePart.UseVisualStyleBackColor = true;
+            this.DeletePart.Click += new System.EventHandler(this.DeletePart_Click);
+            // 
+            // AddPartButton
+            // 
+            this.AddPartButton.Location = new System.Drawing.Point(795, 220);
+            this.AddPartButton.Name = "AddPartButton";
+            this.AddPartButton.Size = new System.Drawing.Size(75, 23);
+            this.AddPartButton.TabIndex = 30;
+            this.AddPartButton.Text = "Add";
+            this.AddPartButton.UseVisualStyleBackColor = true;
+            this.AddPartButton.Click += new System.EventHandler(this.AddPartButton_Click);
+            // 
+            // SearchPart
+            // 
+            this.SearchPart.Location = new System.Drawing.Point(796, 44);
+            this.SearchPart.Name = "SearchPart";
+            this.SearchPart.Size = new System.Drawing.Size(75, 23);
+            this.SearchPart.TabIndex = 29;
+            this.SearchPart.Text = "Search";
+            this.SearchPart.UseVisualStyleBackColor = true;
+            this.SearchPart.Click += new System.EventHandler(this.SearchPart_Click);
+            // 
+            // Cancel
+            // 
+            this.Cancel.AutoEllipsis = true;
+            this.Cancel.Location = new System.Drawing.Point(771, 482);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(75, 23);
+            this.Cancel.TabIndex = 28;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // SaveButton
             // 
@@ -299,64 +348,14 @@
             this.EnterProductName.TabIndex = 2;
             this.EnterProductName.Text = "Product Name";
             // 
-            // Cancel
-            // 
-            this.Cancel.AutoEllipsis = true;
-            this.Cancel.Location = new System.Drawing.Point(771, 482);
-            this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 28;
-            this.Cancel.Text = "Cancel";
-            this.Cancel.UseVisualStyleBackColor = true;
-            this.Cancel.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // SearchPart
-            // 
-            this.SearchPart.Location = new System.Drawing.Point(796, 44);
-            this.SearchPart.Name = "SearchPart";
-            this.SearchPart.Size = new System.Drawing.Size(75, 23);
-            this.SearchPart.TabIndex = 29;
-            this.SearchPart.Text = "Search";
-            this.SearchPart.UseVisualStyleBackColor = true;
-            this.SearchPart.Click += new System.EventHandler(this.SearchPart_Click);
-            // 
-            // AddPartButton
-            // 
-            this.AddPartButton.Location = new System.Drawing.Point(795, 220);
-            this.AddPartButton.Name = "AddPartButton";
-            this.AddPartButton.Size = new System.Drawing.Size(75, 23);
-            this.AddPartButton.TabIndex = 30;
-            this.AddPartButton.Text = "Add";
-            this.AddPartButton.UseVisualStyleBackColor = true;
-            this.AddPartButton.Click += new System.EventHandler(this.AddPartButton_Click);
-            // 
-            // DeletePart
-            // 
-            this.DeletePart.Location = new System.Drawing.Point(795, 419);
-            this.DeletePart.Name = "DeletePart";
-            this.DeletePart.Size = new System.Drawing.Size(75, 23);
-            this.DeletePart.TabIndex = 31;
-            this.DeletePart.Text = "Delete";
-            this.DeletePart.UseVisualStyleBackColor = true;
-            this.DeletePart.Click += new System.EventHandler(this.DeletePart_Click);
-            // 
-            // ErrorLabel
-            // 
-            this.ErrorLabel.AutoSize = true;
-            this.ErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.ErrorLabel.Location = new System.Drawing.Point(15, 390);
-            this.ErrorLabel.Name = "ErrorLabel";
-            this.ErrorLabel.Size = new System.Drawing.Size(0, 13);
-            this.ErrorLabel.TabIndex = 32;
-            // 
-            // AddProduct
+            // ModProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 545);
+            this.ClientSize = new System.Drawing.Size(897, 542);
             this.Controls.Add(this.AddProductBox);
-            this.Name = "AddProduct";
-            this.Text = "AddProduct";
+            this.Name = "ModProduct";
+            this.Text = "ModProductcs";
             this.AddProductBox.ResumeLayout(false);
             this.AddProductBox.PerformLayout();
             this.ResumeLayout(false);
@@ -366,6 +365,23 @@
         #endregion
 
         private System.Windows.Forms.GroupBox AddProductBox;
+        private System.Windows.Forms.Label ErrorLabel;
+        private System.Windows.Forms.Button DeletePart;
+        private System.Windows.Forms.Button AddPartButton;
+        private System.Windows.Forms.Button SearchPart;
+        private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.ListView PartList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ListView PartResults;
+        private System.Windows.Forms.ColumnHeader ProductResultID;
+        private System.Windows.Forms.ColumnHeader ProductResultName;
+        private System.Windows.Forms.ColumnHeader ProductResultInv;
+        private System.Windows.Forms.ColumnHeader ProductResultPrice;
+        private System.Windows.Forms.TextBox PartSearch;
         private System.Windows.Forms.TextBox ROProductID;
         private System.Windows.Forms.Label IdLabel;
         private System.Windows.Forms.TextBox EnterMin;
@@ -378,22 +394,5 @@
         private System.Windows.Forms.Label InvLabel;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.TextBox EnterProductName;
-        private System.Windows.Forms.ListView PartList;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ListView PartResults;
-        private System.Windows.Forms.ColumnHeader ProductResultID;
-        private System.Windows.Forms.ColumnHeader ProductResultName;
-        private System.Windows.Forms.ColumnHeader ProductResultInv;
-        private System.Windows.Forms.ColumnHeader ProductResultPrice;
-        private System.Windows.Forms.TextBox PartSearch;
-        private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Button Cancel;
-        private System.Windows.Forms.Button SearchPart;
-        private System.Windows.Forms.Button DeletePart;
-        private System.Windows.Forms.Button AddPartButton;
-        private System.Windows.Forms.Label ErrorLabel;
     }
 }
