@@ -10,18 +10,15 @@ using System.Windows.Forms;
 
 namespace Software1
 {
-    public partial class Main : Form
+    public partial class Inventory : Form
     {
-        public Main()
+        public Inventory()
         {
             InitializeComponent();
         }
         //Initialize variables
         public static String partselected = String.Empty;
         public static String productselected = String.Empty;
-        //Product and part lists. 
-        public static List<Part> allParts = new List<Part>();
-        public static List<Product> products = new List<Product>();
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -41,56 +38,25 @@ namespace Software1
             add.ShowDialog();
             add = null;
             Show();
-
         }
-        //Search for part by name or id
-        public dynamic LookupPart(dynamic search, bool exact)
-        {
-            if (exact)
-            {
-                foreach(dynamic part in allParts)
-                {
-                    if (part.partID.ToString() == search)
-                    {
-                        return part;
-                    }
-                }
-            }
-           List<dynamic> results = new List<dynamic>();
-            results.Clear();
-           foreach(dynamic part in allParts)
-            {
-                if (part.Name.ToLower().Contains(search.ToLower()))
-                {
-                    results.Add(part);
-                }
-            }
-            return results;
-        }
+        //Search for part
         private void PartSearchButton_Click(object sender, EventArgs e)
         {
             //Formatting
             PartResults.Items.Add("");
             PartResults.Items.Clear();
-
             //Search for parts that match the term
-            dynamic searchResults = LookupPart(PartSearch.Text, false);
-            if (searchResults.Count!=0 && PartSearch.Text !="")
+            foreach (dynamic part in ApplicationData.AllParts)
             {
-                foreach (dynamic part in searchResults)
+                if (part.Name.ToLower().Contains(PartSearch.Text.ToLower()) && PartSearch.Text != "")
                 {
                     string id = System.Convert.ToString(part.partID);
                     string inv = System.Convert.ToString(part.inStock);
                     string price = System.Convert.ToString(part.Price);
-                    string[] row = { id, part.Name, inv, price };
+                    string[] row = { id, part.Name, inv, price};
                     var listViewItem = new ListViewItem(row);
                     PartResults.Items.Add(listViewItem);
                 }
-            }
-            else
-            { 
-                searchResults.Clear();
-                PartResults.Items.Clear();
             }
         }
 
@@ -109,7 +75,7 @@ namespace Software1
                 partselected = string.Empty;
             }
         }
-        //Modify/Update selected part
+        //Modify selected part
         private void ModPartButton_Click(object sender, EventArgs e)
         {
             if (partselected != "")
@@ -134,6 +100,7 @@ namespace Software1
         private void DelPartButton_Click(object sender, EventArgs e)
         {
             var errormsg = string.Empty;
+            dynamic deletepart = string.Empty;
             //Confirm Delete
             var confirmResult = MessageBox.Show("Are you sure you want to delete the selected item?",
                                      "Confirm Delete",
@@ -141,24 +108,28 @@ namespace Software1
 
             if (confirmResult == DialogResult.Yes)
             {
-                dynamic deletepart = LookupPart(partselected, true); 
-   
-                /*foreach (Product product in ApplicationData.AllProducts)
+                foreach (dynamic part in ApplicationData.AllParts)
+                {
+                    if (System.Convert.ToString(part.partID) == partselected)
+                    {
+                        deletepart = part;
+                    }
+                }
+                foreach (Product product in ApplicationData.AllProducts)
                 {
                     if (product.AssociatedParts.Contains(deletepart))
                     {
                         errormsg = "The selected part cannot be deleted because it is associated with at least one product!";
                     }
-                }*/
+                }
                 if (errormsg != "")
                 {
                     ErrorLabel.Text = errormsg;
                 }
                 else
                 {
-                    //Remove a part from the parts list.
                     PartResults.Items.Clear();
-                    allParts.Remove(deletepart);
+                    ApplicationData.AllParts.Remove(deletepart);
                 }
             }
         }

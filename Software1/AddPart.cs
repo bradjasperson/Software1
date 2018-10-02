@@ -114,7 +114,7 @@ namespace Software1
                 part.Min = System.Convert.ToInt32(EnterMin.Text);
                 part.Max = System.Convert.ToInt32(EnterMax.Text);
                 //Add the part to the list of parts
-                ApplicationData.AllParts.Add(part);
+                Main.allParts.Add(part);
                 Close();
             }
         }
