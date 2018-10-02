@@ -28,6 +28,7 @@ namespace Software1
 
         }
 
+
         private void Parts_Enter(object sender, EventArgs e)
         {
 
