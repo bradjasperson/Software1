@@ -109,21 +109,15 @@ namespace Software1
             }
             else
             {
-                dynamic modpart = string.Empty;
-                foreach (dynamic part in ApplicationData.AllParts)
-                {
-                    if (System.Convert.ToString(part.partID) == ROPartID.Text)
-                    {
-                        modpart = part;
-                    }
-                }
+                Main newmain = new Main();
+                dynamic modpart = newmain.LookupPart(ROPartID.Text, true);
                 //Modify InHouse part object
                 bool readd = false;
                 if (MachineLabel.Text == "Machine ID")
                 {
                     if (modpart.GetType().ToString().Contains("Outsourced"))
                     {
-                        ApplicationData.AllParts.Remove(modpart);
+                        Main.allParts.Remove(modpart);
                         modpart = new InHouse();
                         readd = true;
                     }
@@ -134,7 +128,7 @@ namespace Software1
                 {
                     if(modpart.GetType().ToString().Contains("InHouse"))
                     {
-                        ApplicationData.AllParts.Remove(modpart);
+                        Main.allParts.Remove(modpart);
                         modpart = new Outsourced();
                         readd = true;
                     }
@@ -150,7 +144,8 @@ namespace Software1
                 //Readd to list if it was removed
                 if (readd)
                 {
-                    ApplicationData.AllParts.Add(modpart);
+                    //Add modified part to allParts list.
+                    Main.allParts.Add(modpart);
                 }
                 
                 Close();

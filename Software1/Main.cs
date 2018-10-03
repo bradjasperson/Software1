@@ -23,18 +23,8 @@ namespace Software1
         public static List<Part> allParts = new List<Part>();
         public static List<Product> products = new List<Product>();
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void Parts_Enter(object sender, EventArgs e)
-        {
-
-        }
         //Part
-        //Go to addpart
+        //Go to the form that adds a part
         private void AddPartButton_Click(object sender, EventArgs e)
         {
             Hide();
@@ -110,28 +100,28 @@ namespace Software1
                 partselected = string.Empty;
             }
         }
+
         //Modify/Update selected part
         private void ModPartButton_Click(object sender, EventArgs e)
         {
             if (partselected != "")
             {
-                dynamic modpart = string.Empty;
-                foreach (dynamic part in ApplicationData.AllParts)
-                {
-                    if (System.Convert.ToString(part.partID) == partselected)
-                    {
-                        modpart = part;
-                        PartResults.Items.Clear();
-                    }
-                }
+                dynamic modpart = LookupPart(partselected, true);
                 Hide();
                 ModPart mod = new ModPart(modpart);
                 mod.ShowDialog();
                 mod = null;
                 Show();
+                PartResults.Items.Clear();
             }
         }
+
         //Delete Part
+        private void deletePart()
+        {
+            //This task is handled when the DelPartButton is clicked, it is only called from there 
+            //so there is no need to break it out into a separate function
+        }
         private void DelPartButton_Click(object sender, EventArgs e)
         {
             var errormsg = string.Empty;
@@ -143,14 +133,17 @@ namespace Software1
             if (confirmResult == DialogResult.Yes)
             {
                 dynamic deletepart = LookupPart(partselected, true); 
-   
-                /*foreach (Product product in ApplicationData.AllProducts)
+
+                //Check to make sure that the part is not associated with any product, stop and throw an error if there is.
+                foreach (Product product in products)
                 {
-                    if (product.AssociatedParts.Contains(deletepart))
+                    bool isassociated = product.LookUpAssociatedParts(deletepart);
+                    if (isassociated)
                     {
                         errormsg = "The selected part cannot be deleted because it is associated with at least one product!";
                     }
-                }*/
+                }
+
                 if (errormsg != "")
                 {
                     ErrorLabel.Text = errormsg;
@@ -164,16 +157,50 @@ namespace Software1
             }
         }
         //Product
-        //Search For Product
+        //Add Product
+        private void ProductAddButton_Click(object sender, EventArgs e)
+        {
+            Hide();
+            AddProduct add = new AddProduct();
+            add.ShowDialog();
+            add = null;
+            Show();
+        }
+        //Search for product by name or id
+        public dynamic LookupProduct(dynamic search, bool exact)
+        {
+            if (exact)
+            {
+                foreach (dynamic product in products)
+                {
+                    if (product.productID.ToString() == search)
+                    {
+                        return product;
+                    }
+                }
+            }
+            List<dynamic> results = new List<dynamic>();
+            results.Clear();
+            foreach (dynamic product in products)
+            {
+                if (product.Name.ToLower().Contains(search.ToLower()))
+                {
+                    results.Add(product);
+                }
+            }
+            return results;
+        }
         private void ProductSearchButton_Click(object sender, EventArgs e)
         {
             //Formatting
             ProductResults.Items.Add("");
             ProductResults.Items.Clear();
+
             //Search for parts that match the term
-            foreach (Product product in ApplicationData.AllProducts)
+            dynamic searchResults = LookupProduct(ProductSearch.Text, false);
+            if (searchResults.Count != 0 && ProductSearch.Text != "")
             {
-                if (product.Name.ToLower().Contains(ProductSearch.Text.ToLower()) && ProductSearch.Text != "")
+                foreach (dynamic product in searchResults)
                 {
                     string id = System.Convert.ToString(product.productID);
                     string inv = System.Convert.ToString(product.inStock);
@@ -182,6 +209,11 @@ namespace Software1
                     var listViewItem = new ListViewItem(row);
                     ProductResults.Items.Add(listViewItem);
                 }
+            }
+            else
+            {
+                searchResults.Clear();
+                ProductResults.Items.Clear();
             }
         }
         private void ProductResults_SelectedIndexChanged(object sender, EventArgs e)
@@ -195,14 +227,7 @@ namespace Software1
                 productselected = string.Empty;
             }
         }
-        private void ProductAddButton_Click(object sender, EventArgs e)
-        {
-            Hide();
-            AddProduct add = new AddProduct();
-            add.ShowDialog();
-            add = null;
-            Show();
-        }
+
 
         private void ProductDeleteButton_Click(object sender, EventArgs e)
         {

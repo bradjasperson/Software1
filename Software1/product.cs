@@ -15,5 +15,18 @@ namespace Software1
         public int Min { get; set; }
         public int Max { get; set; }
         public List<Part> AssociatedParts { get; set; }
+
+        //Lookup associated parts
+        public dynamic LookUpAssociatedParts(dynamic part)
+        {
+            foreach(dynamic associatedpart in AssociatedParts)
+            {
+                if (part.partID.ToString() == associatedpart.partID.ToString())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
