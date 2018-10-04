@@ -28,5 +28,9 @@ namespace Software1
             }
             return false;
         }
+        //public void addAssociatedPart = false;
+        //This is handeled in AddProduct and ModProduct
+        //public bool removeAssociatedPart = false;
+        //This is handled in ModProduct.cs. The list essentially gets overwritten by it.  
     }
 }

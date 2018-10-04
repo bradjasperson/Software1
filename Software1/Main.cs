@@ -19,11 +19,16 @@ namespace Software1
         //Initialize variables
         public static String partselected = String.Empty;
         public static String productselected = String.Empty;
-        //Product and part lists. 
+
+        //Product and part lists. This is where all products and parts are stored while the program runs.
         public static List<Part> allParts = new List<Part>();
         public static List<Product> products = new List<Product>();
 
         //Part
+        public void addPart()
+        {
+            //This is handled by clicking the AddPartButton, it calls AddPart.cs
+        }
         //Go to the form that adds a part
         private void AddPartButton_Click(object sender, EventArgs e)
         {
@@ -100,7 +105,10 @@ namespace Software1
                 partselected = string.Empty;
             }
         }
-
+        private void updatePart()
+        {
+            //This is handled when the ModPartButton is clicked it calls ModPart.cs
+        }
         //Modify/Update selected part
         private void ModPartButton_Click(object sender, EventArgs e)
         {
@@ -158,6 +166,10 @@ namespace Software1
         }
         //Product
         //Add Product
+        public void addProduct()
+        {
+            //This is handled by clicking the ProductAddButton, it calls AddProduct.cs
+        }
         private void ProductAddButton_Click(object sender, EventArgs e)
         {
             Hide();
@@ -227,11 +239,31 @@ namespace Software1
                 productselected = string.Empty;
             }
         }
-
-
+        //Modify Product
+        public void updateProduct()
+        {
+            //This is handled by clicking the ProductModifyButton it calls ModProduct.cs
+        }
+        private void ProductModifyButton_Click(object sender, EventArgs e)
+        {
+            if (productselected != "")
+            {
+                Product modproduct = LookupProduct(productselected, true);
+                ProductResults.Items.Clear();
+                Hide();
+                ModProduct mod = new ModProduct(modproduct);
+                mod.ShowDialog();
+                mod = null;
+                Show();
+            }
+        }
+        public void removeProduct()
+        {
+            //This is handled by clicking the ProductDeleteButton
+        }
+        //Delete Product
         private void ProductDeleteButton_Click(object sender, EventArgs e)
         {
-            dynamic deleteproduct = string.Empty;
             //Confirm Delete
             var confirmResult = MessageBox.Show("Are you sure you want to delete the selected item?",
                                      "Confirm Delete",
@@ -239,36 +271,9 @@ namespace Software1
 
             if (confirmResult == DialogResult.Yes)
             {
-                foreach (dynamic product in ApplicationData.AllProducts)
-                {
-                    if (System.Convert.ToString(product.productID) == productselected)
-                    {
-                        deleteproduct = product;
-                        ProductResults.Items.Clear();
-                    }
-                }
-                ApplicationData.AllProducts.Remove(deleteproduct);
-            }
-        }
-
-        private void ProductModifyButton_Click(object sender, EventArgs e)
-        {
-            if (productselected != "")
-            {
-                dynamic modproduct = string.Empty;
-                foreach (Product product in ApplicationData.AllProducts)
-                {
-                    if (System.Convert.ToString(product.productID) == productselected)
-                    {
-                        modproduct = product;
-                        ProductResults.Items.Clear();
-                    }
-                }
-                Hide();
-                ModProduct mod = new ModProduct(modproduct);
-                mod.ShowDialog();
-                mod = null;
-                Show();
+                Product deleteproduct = LookupProduct(productselected, true);
+                ProductResults.Items.Clear();
+                products.Remove(deleteproduct);
             }
         }
         //Quit program

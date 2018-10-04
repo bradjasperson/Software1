@@ -15,7 +15,7 @@ namespace Software1
         public ModProduct(Product product)
         {
             InitializeComponent();
-            //Populate text fields with values of selected part to modify.
+            //Populate text fields with values of selected product to modify.
             var productid = System.Convert.ToString(product.productID);
             var inv = System.Convert.ToString(product.inStock);
             var min = System.Convert.ToString(product.Min);
@@ -27,7 +27,7 @@ namespace Software1
             EnterPrice.Text = price;
             EnterMin.Text = min;
             EnterMax.Text = max;
-            //Populate the parts that are part of the product to the listview
+            //Populate the parts that are associated with the product to the listview
             foreach (dynamic part in product.AssociatedParts)
             {
                 var partid = System.Convert.ToString(part.partID);
@@ -55,13 +55,12 @@ namespace Software1
         //Search parts
         private void SearchPart_Click(object sender, EventArgs e)
         {
-            //Formatting
-            PartResults.Items.Add("");
-            PartResults.Items.Clear();
             //Search for parts that match the term
-            foreach (dynamic part in ApplicationData.AllParts)
+            Main newmain = new Main();
+            dynamic searchResults = newmain.LookupPart(PartSearch.Text, false);
+            if (searchResults.Count != 0 && PartSearch.Text != "")
             {
-                if (part.Name.ToLower().Contains(PartSearch.Text.ToLower()) && PartSearch.Text != "")
+                foreach (dynamic part in searchResults)
                 {
                     string id = System.Convert.ToString(part.partID);
                     string inv = System.Convert.ToString(part.inStock);
@@ -71,26 +70,25 @@ namespace Software1
                     PartResults.Items.Add(listViewItem);
                 }
             }
+            else
+            {
+                searchResults.Clear();
+                PartResults.Items.Clear();
+            }
         }
         //Add part to productlist
         private void AddPartButton_Click(object sender, EventArgs e)
         {
             if (partselected != "")
             {
-                dynamic addpart = string.Empty;
-                foreach (dynamic part in ApplicationData.AllParts)
-                {
-                    if (System.Convert.ToString(part.partID) == partselected)
-                    {
-                        addpart = part;
-                        string id = System.Convert.ToString(part.partID);
-                        string inv = System.Convert.ToString(part.inStock);
-                        string price = System.Convert.ToString(part.Price);
-                        string[] row = { id, part.Name, inv, price };
-                        var listViewItem = new ListViewItem(row);
-                        PartList.Items.Add(listViewItem);
-                    }
-                }
+                Main newmain = new Main();
+                dynamic addpart = newmain.LookupPart(partselected, true);
+                string id = System.Convert.ToString(addpart.partID);
+                string inv = System.Convert.ToString(addpart.inStock);
+                string price = System.Convert.ToString(addpart.Price);
+                string[] row = { id, addpart.Name, inv, price };
+                var listViewItem = new ListViewItem(row);
+                PartList.Items.Add(listViewItem);
             }
         }
         //Delete part from product list
@@ -127,14 +125,10 @@ namespace Software1
             if (PartList != null)
             {
                 foreach (ListViewItem listpart in PartList.Items)
-                {
-                    foreach (dynamic partfind in ApplicationData.AllParts)
-                    {
-                        if (listpart.Text == partfind.partID.ToString())
-                        {
-                            parts.Add(partfind);
-                        }
-                    }
+                {            
+                    Main newmain = new Main();
+                    dynamic partfind = newmain.LookupPart(listpart.Text, true);
+                    parts.Add(partfind);
                 }
             }
             //Get the total cost of parts
@@ -171,7 +165,10 @@ namespace Software1
             }
             else
             {
-                Product product = new Product();
+                //Product product = new Product();
+                //Update the product with the current values
+                Main newmain = new Main();
+                Product product = newmain.LookupProduct(ROProductID.Text, true);
 
                 //Populate the rest of the object properties
                 product.productID = System.Convert.ToInt32(ROProductID.Text);
@@ -182,8 +179,8 @@ namespace Software1
                 product.Max = System.Convert.ToInt32(EnterMax.Text);
                 product.AssociatedParts = parts;
                 //Add the modified part to the list of parts
-                int index = ApplicationData.AllProducts.FindIndex(a => a.productID == product.productID);
-                ApplicationData.AllProducts[index] = product;
+                //int index = ApplicationData.AllProducts.FindIndex(a => a.productID == product.productID);
+                //ApplicationData.AllProducts[index] = product;
                 Close();
             }
         }

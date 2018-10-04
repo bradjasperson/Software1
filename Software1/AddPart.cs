@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//This creates a part and adds it to the allParts list found in Main.cs
 namespace Software1
 {
     public partial class AddPart : Form
@@ -82,7 +82,7 @@ namespace Software1
             }
             else if (min > max || max < min)
             {
-                errormsg += "Max must be greater than Min and Min must be greater than Max!";
+                errormsg += "Max must be greater than Min and Min must be greater than or equal to Max!";
             }
             //If there is an error, display error messages in Add Part window.
             if (errormsg != "")
@@ -113,7 +113,7 @@ namespace Software1
                 part.inStock = System.Convert.ToInt32(EnterInv.Text);
                 part.Min = System.Convert.ToInt32(EnterMin.Text);
                 part.Max = System.Convert.ToInt32(EnterMax.Text);
-                //Add the part to the list of parts
+                //Add the part to the list of parts.
                 Main.allParts.Add(part);
                 Close();
             }
