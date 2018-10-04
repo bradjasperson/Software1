@@ -61,7 +61,6 @@
     <Compile Include="AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

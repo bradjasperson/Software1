@@ -37,9 +37,19 @@ namespace Software1
                 var listViewItem = new ListViewItem(row);
                 PartList.Items.Add(listViewItem);
             }
+            //Add all parts to datagrid
+            foreach (dynamic part in Main.allParts)
+            {
+                string id = System.Convert.ToString(part.partID);
+                string partsinv = System.Convert.ToString(part.inStock);
+                string partsprice = System.Convert.ToString(part.Price);
+                string[] row = { id, part.Name, partsinv, partsprice };
+                var listViewItem = new ListViewItem(row);
+                PartResults.Items.Add(listViewItem);
+            }
         }
-        //Initialize partselected variable
-        public static String partselected = String.Empty;
+    //Initialize partselected variable
+    public static String partselected = String.Empty;
         //Set the variable partselected if an item in the box is clicked
         private void PartResults_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -52,6 +62,7 @@ namespace Software1
                 partselected = string.Empty;
             }
         }
+
         //Search parts
         private void SearchPart_Click(object sender, EventArgs e)
         {
@@ -74,6 +85,18 @@ namespace Software1
             {
                 searchResults.Clear();
                 PartResults.Items.Clear();
+                if (PartSearch.Text == "")
+                {
+                    foreach (dynamic part in Main.allParts)
+                    {
+                        string id = System.Convert.ToString(part.partID);
+                        string inv = System.Convert.ToString(part.inStock);
+                        string price = System.Convert.ToString(part.Price);
+                        string[] row = { id, part.Name, inv, price };
+                        var listViewItem = new ListViewItem(row);
+                        PartResults.Items.Add(listViewItem);
+                    }
+                }
             }
         }
         //Add part to productlist

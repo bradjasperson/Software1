@@ -33,11 +33,20 @@ namespace Software1
         private void AddPartButton_Click(object sender, EventArgs e)
         {
             Hide();
+            PartResults.Items.Clear();
             AddPart add = new AddPart();
             add.ShowDialog();
             add = null;
             Show();
-
+            foreach (dynamic part in allParts)
+            {
+                string id = System.Convert.ToString(part.partID);
+                string inv = System.Convert.ToString(part.inStock);
+                string price = System.Convert.ToString(part.Price);
+                string[] row = { id, part.Name, inv, price };
+                var listViewItem = new ListViewItem(row);
+                PartResults.Items.Add(listViewItem);
+            }
         }
         //Search for part by name or id
         public dynamic LookupPart(dynamic search, bool exact)
@@ -87,6 +96,18 @@ namespace Software1
             { 
                 searchResults.Clear();
                 PartResults.Items.Clear();
+                if (PartSearch.Text == "")
+                {
+                    foreach (dynamic part in allParts)
+                    {
+                        string id = System.Convert.ToString(part.partID);
+                        string inv = System.Convert.ToString(part.inStock);
+                        string price = System.Convert.ToString(part.Price);
+                        string[] row = { id, part.Name, inv, price };
+                        var listViewItem = new ListViewItem(row);
+                        PartResults.Items.Add(listViewItem);
+                    }
+                }
             }
         }
 
@@ -121,6 +142,15 @@ namespace Software1
                 mod = null;
                 Show();
                 PartResults.Items.Clear();
+                foreach (dynamic part in allParts)
+                {
+                    string id = System.Convert.ToString(part.partID);
+                    string inv = System.Convert.ToString(part.inStock);
+                    string price = System.Convert.ToString(part.Price);
+                    string[] row = { id, part.Name, inv, price };
+                    var listViewItem = new ListViewItem(row);
+                    PartResults.Items.Add(listViewItem);
+                }
             }
         }
 
@@ -161,6 +191,15 @@ namespace Software1
                     //Remove a part from the parts list.
                     PartResults.Items.Clear();
                     allParts.Remove(deletepart);
+                    foreach (dynamic part in allParts)
+                    {
+                        string id = System.Convert.ToString(part.partID);
+                        string inv = System.Convert.ToString(part.inStock);
+                        string price = System.Convert.ToString(part.Price);
+                        string[] row = { id, part.Name, inv, price };
+                        var listViewItem = new ListViewItem(row);
+                        PartResults.Items.Add(listViewItem);
+                    }
                 }
             }
         }
@@ -177,6 +216,16 @@ namespace Software1
             add.ShowDialog();
             add = null;
             Show();
+            ProductResults.Items.Clear();
+            foreach (dynamic product in products)
+            {
+                string id = System.Convert.ToString(product.productID);
+                string inv = System.Convert.ToString(product.inStock);
+                string price = System.Convert.ToString(product.Price);
+                string[] row = { id, product.Name, inv, price };
+                var listViewItem = new ListViewItem(row);
+                ProductResults.Items.Add(listViewItem);
+            }
         }
         //Search for product by name or id
         public dynamic LookupProduct(dynamic search, bool exact)
@@ -226,6 +275,18 @@ namespace Software1
             {
                 searchResults.Clear();
                 ProductResults.Items.Clear();
+                if (ProductSearch.Text == "")
+                {
+                    foreach (dynamic product in products)
+                    {
+                        string id = System.Convert.ToString(product.productID);
+                        string inv = System.Convert.ToString(product.inStock);
+                        string price = System.Convert.ToString(product.Price);
+                        string[] row = { id, product.Name, inv, price };
+                        var listViewItem = new ListViewItem(row);
+                        ProductResults.Items.Add(listViewItem);
+                    }
+                }
             }
         }
         private void ProductResults_SelectedIndexChanged(object sender, EventArgs e)
@@ -255,6 +316,16 @@ namespace Software1
                 mod.ShowDialog();
                 mod = null;
                 Show();
+                ProductResults.Items.Clear();
+                foreach (dynamic product in products)
+                {
+                    string id = System.Convert.ToString(product.productID);
+                    string inv = System.Convert.ToString(product.inStock);
+                    string price = System.Convert.ToString(product.Price);
+                    string[] row = { id, product.Name, inv, price };
+                    var listViewItem = new ListViewItem(row);
+                    ProductResults.Items.Add(listViewItem);
+                }
             }
         }
         public void removeProduct()
@@ -274,6 +345,15 @@ namespace Software1
                 Product deleteproduct = LookupProduct(productselected, true);
                 ProductResults.Items.Clear();
                 products.Remove(deleteproduct);
+                foreach (dynamic product in products)
+                {
+                    string id = System.Convert.ToString(product.productID);
+                    string inv = System.Convert.ToString(product.inStock);
+                    string price = System.Convert.ToString(product.Price);
+                    string[] row = { id, product.Name, inv, price };
+                    var listViewItem = new ListViewItem(row);
+                    ProductResults.Items.Add(listViewItem);
+                }
             }
         }
         //Quit program

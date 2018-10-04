@@ -15,6 +15,16 @@ namespace Software1
         public AddProduct()
         {
             InitializeComponent();
+            //Add all parts to datagrid
+            foreach (dynamic part in Main.allParts)
+            {
+                string id = System.Convert.ToString(part.partID);
+                string partsinv = System.Convert.ToString(part.inStock);
+                string partsprice = System.Convert.ToString(part.Price);
+                string[] row = { id, part.Name, partsinv, partsprice };
+                var listViewItem = new ListViewItem(row);
+                PartResults.Items.Add(listViewItem);
+            }
         }
         //Initialize partselected variable
         public static String partselected = String.Empty;
@@ -47,6 +57,18 @@ namespace Software1
             {
                 searchResults.Clear();
                 PartResults.Items.Clear();
+                if (PartSearch.Text == "")
+                {
+                    foreach (dynamic part in Main.allParts)
+                    {
+                        string id = System.Convert.ToString(part.partID);
+                        string inv = System.Convert.ToString(part.inStock);
+                        string price = System.Convert.ToString(part.Price);
+                        string[] row = { id, part.Name, inv, price };
+                        var listViewItem = new ListViewItem(row);
+                        PartResults.Items.Add(listViewItem);
+                    }
+                }
             }
         }
         //Save partselected
